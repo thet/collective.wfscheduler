@@ -1,0 +1,5 @@
+====================
+collective.wfscheduler
+====================
+
+User documentation
