@@ -22,3 +22,16 @@ class IWFTaskFolder(Interface):
         title=_(u'Description'),
         required=False,
     )
+
+
+class IWFTask(Interface):
+
+    title = schema.TextLine(
+        title=_(u'Title'),
+        required=True,
+    )
+
+    description = schema.Text(
+        title=_(u'Description'),
+        required=False,
+    )
