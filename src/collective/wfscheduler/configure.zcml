@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.wfscheduler">
 
   <i18n:registerTranslations directory="locales" />
@@ -9,6 +10,16 @@
   <includeDependencies package="." />
 
   <include package=".browser" />
+
+  <plone:behavior
+      name="wftask"
+      provides=".behaviors.IWFTask"
+      title="Workflow Scheduler Task"
+  />
+  <adapter
+      factory=".behaviors.date_indexer"
+      name="start"
+  />
 
   <genericsetup:registerProfile
       name="default"

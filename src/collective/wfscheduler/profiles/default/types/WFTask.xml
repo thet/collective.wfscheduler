@@ -23,17 +23,23 @@
     <!-- <element value="" />-->
   </property>
   <property name="filter_content_types">True</property>
-  <property name="global_allow">True</property>
+  <property name="global_allow">False</property>
 
   <!-- Schema, class and security -->
   <property name="add_permission">cmf.AddPortalContent</property>
   <property name="klass">plone.dexterity.content.Item</property>
   <property name="model_file"></property>
-  <property name="model_source"></property>
-  <property name="schema">collective.wfscheduler.interfaces.IWFTask</property>
+  <property name="model_source">
+  &lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+      &lt;schema&gt;
+      &lt;/schema&gt;
+  &lt;/model&gt;</property>
+  <property name="schema"></property>
 
   <!-- Enabled behaviors -->
   <property name="behaviors">
+    <element value="plone.basic" />
+    <element value="wftask" />
     <element value="plone.app.content.interfaces.INameFromTitle" />
   </property>
 
