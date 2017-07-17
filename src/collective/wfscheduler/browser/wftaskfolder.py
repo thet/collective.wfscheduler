@@ -3,6 +3,8 @@ from plone.app.contenttypes.browser.folder import FolderView
 from collective.wfscheduler.behaviors import refs_to_objs
 from Products.CMFPlone.utils import safe_callable
 
+import plone.api
+
 
 class WFTaskFolderView(FolderView):
 
@@ -24,7 +26,14 @@ class WFTaskFolderView(FolderView):
             value = self.toLocalizedTime(value, long_format=1)
 
         if fieldname == 'task_items':
-            value = u', '.join([it.Title() for it in refs_to_objs(value)])
+
+            value = u', '.join([
+                u'<a class="pat-plone-modal" href="{1}">{0} ({2})</a>'.format(
+                    it.Title(),
+                    it.absolute_url(),
+                    plone.api.content.get_state(it)
+                ) for it in refs_to_objs(value)
+            ])
 
         return {
             # 'title': _(fieldname, default=fieldname),

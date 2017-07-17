@@ -18,7 +18,15 @@
       template="wftaskfolder.pt"
       menu="plone_displayviews"
       title="Tabular view"
-      permission="zope2.View"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <browser:page
+      name="wftaskrunner"
+      for="*"
+      class=".wftaskrunner.WFTaskRunnerView"
+      allowed_attributes="run"
+      permission="cmf.ModifyPortalContent"
       />
 
 </configure>

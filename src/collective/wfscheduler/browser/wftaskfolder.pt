@@ -59,9 +59,8 @@
                     tal:attributes="class python: oddrow and 'even' or 'odd'">
 
                   <tal:block tal:repeat="field view/tabular_fields">
-                    <td tal:condition="python:field not in ['Title', 'Creator', 'getIcon']"
-                        tal:define="field_data python:view.tabular_fielddata(item, field)">
-                      <tal:block tal:replace="field_data/value" />
+                    <td tal:define="field_data python:view.tabular_fielddata(item, field)">
+                      <tal:block tal:replace="structure field_data/value" />
                     </td>
                   </tal:block>
                   <td class="actions">
@@ -71,7 +70,7 @@
                     <a class="delete pat-plone-modal" tal:attributes="href string:${item_link}/@@delete_confirmation">
                       Delete
                     </a>
-                    <a class="run pat-plone-modal" tal:attributes="href string:${context/absolute_url}/?run=${item/UID}">
+                    <a class="run pat-plone-modal" tal:attributes="href string:${context/absolute_url}/@@wftaskrunner/run?task_id=${item/UID}">
                       Run
                     </a>
                   </td>
