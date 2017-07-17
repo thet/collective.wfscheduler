@@ -14,6 +14,14 @@ from zope import schema
 from zope.interface import provider
 
 
+def refs_to_objs(refs):
+    ret = []
+    for ref in refs:
+        obj = ref.to_object
+        ret.append(obj)
+    return ret
+
+
 @provider(IFormFieldProvider)
 class IWFTask(model.Schema):
     """Behavior providing fields for the workflow tasks.
@@ -81,3 +89,21 @@ def date_indexer(obj):
     if not date:
         raise AttributeError
     return date
+
+
+@indexer(IWFTask)
+def title_indexer(obj):
+    title = obj.Title()
+    acc = IWFTask(obj, None)
+    items = [it.Title() for it in refs_to_objs(acc.task_items)]
+    action = acc.task_action
+    date = acc.task_date
+
+    ret = u'{0} - {1} ({2}){3}'.format(
+        title,
+        action,
+        u', '.join(items),
+        u', {0}'.format(date) if date else u''
+    )
+
+    return ret

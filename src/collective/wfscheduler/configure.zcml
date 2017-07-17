@@ -20,6 +20,10 @@
       factory=".behaviors.date_indexer"
       name="start"
   />
+  <adapter
+      factory=".behaviors.title_indexer"
+      name="Title"
+  />
 
   <genericsetup:registerProfile
       name="default"
