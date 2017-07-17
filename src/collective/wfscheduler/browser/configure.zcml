@@ -11,4 +11,14 @@
       directory="static"
       />
 
+  <browser:page
+      name="wftaskfolder"
+      for="*"
+      class=".wftaskfolder.WFTaskFolderView"
+      template="wftaskfolder.pt"
+      menu="plone_displayviews"
+      title="Tabular view"
+      permission="zope2.View"
+      />
+
 </configure>
