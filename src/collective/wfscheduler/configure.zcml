@@ -24,6 +24,10 @@
       factory=".behaviors.title_indexer"
       name="Title"
   />
+  <adapter
+      factory=".behaviors.is_active_indexer"
+      name="is_active"
+  />
 
   <genericsetup:registerProfile
       name="default"

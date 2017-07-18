@@ -82,10 +82,24 @@ class IWFTask(model.Schema):
         default_timezone=default_timezone
     )
 
+    task_active = schema.Bool(
+        title=_(
+            u'label_task_active',
+            default=u'Active?'
+        ),
+        description=_(
+            u'help_task_active',
+            default=u'On, if the task is active. After successful run, this will be automatically set to off.'  # noqa
+        ),
+        required=False,
+        default=True
+    )
+
 
 @indexer(IWFTask)
 def date_indexer(obj):
-    date = getattr(obj, 'task_date', None)
+    acc = IWFTask(obj, None)
+    date = acc.task_date
     if not date:
         raise AttributeError
     return date
@@ -107,3 +121,9 @@ def title_indexer(obj):
     )
 
     return ret
+
+
+@indexer(IWFTask)
+def is_active_indexer(obj):
+    acc = IWFTask(obj, None)
+    return acc.task_active
