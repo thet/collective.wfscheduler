@@ -25,7 +25,7 @@
       <div metal:use-macro="context/batch_macros/macros/navigation" />
 
       <div class="has-table wftasklisting">
-        <a href="${context/absolute_url}/++add++WFTask" class="add pat-plone-modal">
+        <a href="${context/absolute_url}/++add++WFTask" class="add pat-plone-modal" i18n:translate="label_task_add">
           Add
         </a>
         <table
@@ -64,13 +64,13 @@
                     </td>
                   </tal:block>
                   <td class="actions">
-                    <a class="edit pat-plone-modal" tal:attributes="href string:${item_link}/@@edit">
+                    <a class="edit pat-plone-modal" tal:attributes="href string:${item_link}/@@edit" i18n:translate="label_task_edit">
                       Edit
                     </a>
-                    <a class="delete pat-plone-modal" tal:attributes="href string:${item_link}/@@delete_confirmation">
+                    <a class="delete pat-plone-modal" tal:attributes="href string:${item_link}/@@delete_confirmation" i18n:translate="label_task_delete">
                       Delete
                     </a>
-                    <a class="run pat-plone-modal" tal:attributes="href string:${context/absolute_url}/@@wftaskrunner/?task_id=${item/UID}">
+                    <a class="run pat-plone-modal" tal:attributes="href string:${context/absolute_url}/@@wftaskrunner/?task_id=${item/UID}" i18n:translate="label_task_run">
                       Run
                     </a>
                   </td>

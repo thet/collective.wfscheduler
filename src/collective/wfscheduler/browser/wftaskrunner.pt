@@ -8,21 +8,21 @@
 <body>
 
 <metal:custom_title fill-slot="content-title">
-  <h1 class="documentFirstHeading" i18n:translate="">Workflow Task Runner Summary</h1>
+  <h1 class="documentFirstHeading" i18n:translate="task_runner_header">Workflow Task Runner Summary</h1>
 </metal:custom_title>
 
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core">
 
   <tal:if tal:define="infos view/infos" tal:condition="infos">
-    <h2>Infos</h2>
+    <h2 i18n:translate="task_runner_infos">Infos</h2>
     <ul>
       <li tal:repeat="info infos" tal:content="structure info"/>
     </ul>
   </tal:if>
 
   <tal:if tal:define="warnings view/warnings" tal:condition="warnings">
-    <h2>Warnings</h2>
+    <h2 i18n:translate="task_runner_warnings">Warnings</h2>
     <ul>
       <li tal:repeat="warning warnings" tal:content="structure warning"/>
     </ul>
