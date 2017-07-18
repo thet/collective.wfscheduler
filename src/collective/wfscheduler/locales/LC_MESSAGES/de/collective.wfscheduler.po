@@ -1,0 +1,109 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2017-07-18 20:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.wfscheduler\n"
+
+#: ../profiles/default/types/WFTask.xml
+#: ../profiles/default/types/WFTaskFolder.xml
+msgid "Edit"
+msgstr ""
+
+#: ../configure.zcml:39
+msgid "Installs the collective.wfscheduler add-on."
+msgstr ""
+
+#: ../browser/configure.zcml:22
+msgid "Tabular view"
+msgstr ""
+
+#: ../configure.zcml:48
+msgid "Uninstalls the collective.wfscheduler add-on."
+msgstr ""
+
+#: ../profiles/default/types/WFTask.xml
+#: ../profiles/default/types/WFTaskFolder.xml
+msgid "View"
+msgstr ""
+
+#: ../configure.zcml:18
+msgid "Workflow Scheduler Task"
+msgstr ""
+
+#: ../profiles/default/types/WFTask.xml
+msgid "Workflow Task"
+msgstr ""
+
+#: ../profiles/default/types/WFTaskFolder.xml
+msgid "Workflow Task Folder"
+msgstr ""
+
+#: ../configure.zcml:39
+msgid "collective.wfscheduler"
+msgstr ""
+
+#: ../configure.zcml:48
+msgid "collective.wfscheduler (uninstall)"
+msgstr ""
+
+#. Default: "Select one or more content objects to be processed."
+#: ../behaviors.py:35
+msgid "description_task_items"
+msgstr ""
+
+#. Default: "Select a workflow transition, which should be applied when the task is executed."
+#: ../behaviors.py:56
+msgid "help_task_action"
+msgstr ""
+
+#. Default: "On, if the task is active. After successful run, this will be automatically set to off."
+#: ../behaviors.py:90
+msgid "help_task_active"
+msgstr ""
+
+#. Default: "Date and time, when the task action should be executed."
+#: ../behaviors.py:72
+msgid "help_task_date"
+msgstr ""
+
+#. Default: "Task action"
+#: ../behaviors.py:53
+#: ../browser/wftaskfolder.py:36
+msgid "label_task_action"
+msgstr ""
+
+#. Default: "Active?"
+#: ../behaviors.py:86
+#: ../browser/wftaskfolder.py:38
+msgid "label_task_active"
+msgstr ""
+
+#. Default: "Task task date"
+#: ../behaviors.py:68
+#: ../browser/wftaskfolder.py:37
+msgid "label_task_date"
+msgstr ""
+
+#. Default: "Task items"
+#: ../behaviors.py:31
+#: ../browser/wftaskfolder.py:35
+msgid "label_task_items"
+msgstr ""
+
+#. Default: "Title"
+#: ../browser/wftaskfolder.py:34
+msgid "label_title"
+msgstr ""
