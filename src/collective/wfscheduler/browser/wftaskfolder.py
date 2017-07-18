@@ -31,8 +31,8 @@ class WFTaskFolderView(FolderView):
     def tabular_fields(self):
         return [
             'title',
-            'task_action',
             'task_items',
+            'task_action',
             'task_date',
             'task_active'
         ]
@@ -47,13 +47,15 @@ class WFTaskFolderView(FolderView):
 
         if fieldname == 'task_items':
 
-            value = u', '.join([
-                u'<a class="pat-plone-modal" href="{1}">{0} ({2})</a>'.format(
+            value = u'\n'.join([
+                u'<li><a class="pat-plone-modal" href="{1}">{0} ({2})</a></li>'.format(  # noqa
                     it.Title(),
                     it.absolute_url(),
                     plone.api.content.get_state(it)
                 ) for it in refs_to_objs(value)
             ])
+
+            value = u'<ul>\n{0}\n</ul>'.format(value)
 
         return {
             # 'title': _(fieldname, default=fieldname),
