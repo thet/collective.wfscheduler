@@ -20,14 +20,31 @@
 
   <metal:listingmacro define-macro="listing">
   <tal:results define="batch view/batch">
+  <section class="wftasklisting">
+
+    <a href="${context/absolute_url}/++add++WFTask" class="add pat-plone-modal" i18n:translate="label_task_add">
+      Add
+    </a>
+
+    <nav class="filter">
+      <ul>
+        <li>
+          <a tal:attributes="class python:'filter_active ' + view.filter_selected['active']" href="?filter=active" i18n:translate="label_show_all">Show active</a>
+        </li>
+        <li>
+          <a tal:attributes="class python:'filter_inactive ' + view.filter_selected['inactive']" href="?filter=inactive" i18n:translate="label_show_all">Show inactive</a>
+        </li>
+        <li>
+          <a tal:attributes="class python:'filter_all ' + view.filter_selected['all']" href="?filter=all" i18n:translate="label_show_all">Show all</a>
+        </li>
+      </ul>
+    </nav>
+
     <tal:listing condition="batch">
 
       <div metal:use-macro="context/batch_macros/macros/navigation" />
 
-      <div class="has-table wftasklisting">
-        <a href="${context/absolute_url}/++add++WFTask" class="add pat-plone-modal" i18n:translate="label_task_add">
-          Add
-        </a>
+      <div class="has-table">
         <table
             class="listing"
             summary="Content listing"
@@ -94,6 +111,7 @@
     </p>
     </metal:empty>
 
+  </section>
   </tal:results>
   </metal:listingmacro>
 
