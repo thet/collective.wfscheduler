@@ -29,10 +29,10 @@
     <nav class="filter">
       <ul>
         <li>
-          <a tal:attributes="class python:'filter_active ' + view.filter_selected['active']" href="?filter=active" i18n:translate="label_show_all">Show active</a>
+          <a tal:attributes="class python:'filter_active ' + view.filter_selected['active']" href="?filter=active" i18n:translate="label_show_active">Show active</a>
         </li>
         <li>
-          <a tal:attributes="class python:'filter_inactive ' + view.filter_selected['inactive']" href="?filter=inactive" i18n:translate="label_show_all">Show inactive</a>
+          <a tal:attributes="class python:'filter_inactive ' + view.filter_selected['inactive']" href="?filter=inactive" i18n:translate="label_show_inactive">Show inactive</a>
         </li>
         <li>
           <a tal:attributes="class python:'filter_all ' + view.filter_selected['all']" href="?filter=all" i18n:translate="label_show_all">Show all</a>
@@ -52,9 +52,8 @@
           <thead>
             <tr>
               <th class="nosort"
-                  i18n:translate=""
                   tal:repeat="field view/tabular_fields"
-                  tal:content="field">Field name</th>
+                  tal:content="field/title">Field name</th>
               <th class="nosort" i18n:translate="label_actions">
                 Actions
               </th>
@@ -76,7 +75,7 @@
                     tal:attributes="class python: oddrow and 'even' or 'odd'">
 
                   <tal:block tal:repeat="field view/tabular_fields">
-                    <td class="${field}" tal:define="field_data python:view.tabular_fielddata(item, field)">
+                    <td class="${field/name}" tal:define="field_data python:view.tabular_fielddata(item, field['name'])">
                       <tal:block tal:replace="structure field_data/value" />
                     </td>
                   </tal:block>

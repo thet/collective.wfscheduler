@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.app.contenttypes.browser.folder import FolderView
+from collective.wfscheduler import _
 from collective.wfscheduler.behaviors import refs_to_objs
+from plone.app.contenttypes.browser.folder import FolderView
 from Products.CMFPlone.utils import safe_callable
 
 import plone.api
@@ -29,12 +30,13 @@ class WFTaskFolderView(FolderView):
 
     @property
     def tabular_fields(self):
+
         return [
-            'title',
-            'task_items',
-            'task_action',
-            'task_date',
-            'task_active'
+            {'title': _('label_title', default=u"Title"), 'name': 'title'},
+            {'title': _('label_task_items', default=u'Task items'), 'name': 'task_items'},  # noqa
+            {'title': _('label_task_action', default=u'Task action'), 'name': 'task_action'},  # noqa
+            {'title': _('label_task_date', default=u'Task task date'), 'name': 'task_date'},  # noqa
+            {'title': _('label_task_active', default=u'Active?'), 'name': 'task_active'},  # noqa
         ]
 
     def tabular_fielddata(self, item, fieldname):
