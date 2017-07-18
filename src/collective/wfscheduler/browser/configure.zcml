@@ -25,7 +25,7 @@
       name="wftaskrunner"
       for="*"
       class=".wftaskrunner.WFTaskRunnerView"
-      allowed_attributes="run"
+      template="wftaskrunner.pt"
       permission="cmf.ModifyPortalContent"
       />
 

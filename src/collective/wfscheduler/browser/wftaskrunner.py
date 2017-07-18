@@ -3,56 +3,81 @@ from plone.api.exc import InvalidParameterError
 from plone.app.uuid.utils import uuidToObject
 from Products.Five.browser import BrowserView
 
+import logging
 import plone.api
 
-import logging
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 
 class WFTaskRunnerView(BrowserView):
 
-    @property
-    def run(self, task_id=None):
-        """Run a task with a specified id.
-        """
-        task_id = str(task_id or self.request.form.get('task_id', None))
-        if not task_id:
-            logger.warn('No task given specified')
-            return
-
-        import pdb
-        pdb.set_trace()
-
-        task = uuidToObject(task_id)
-        if not task:
-            logger.warn('Task ({0}) not found.'.format(task_id))
-            return
-        if not (task.task_action and task.task_items):
-            logger.warn(
-                'Task ({0}, action: {1}, items: {2}) incomplete.'.format(
-                    task_id,
-                    task.task_action,
-                    task.task_items
-                )
-            )
-            return
-
-        for ref in task.task_items:
-            ob = ref.to_object()
-            if not ob:
-                return
-            try:
-                plone.api.content.transition(
-                    ob=ob,
-                    transition=task.task_action
-                )
-            except InvalidParameterError:
-                logger.warn(
-                    'Could not apply transform action to object {0}'.format(
-                        task_id
-                    )
-                )
+    warnings = []
 
     def __call__(self, *args, **kwargs):
-        pass
+        """Run a task with a specified id or all upcoming tasks.
+        """
+        tasks = []
+
+        infos = []
+        warnings = []
+
+        task_id = self.request.form.get('task_id', None)
+        if task_id:
+            tasks = [uuidToObject(task_id)]
+        else:
+            # TODO
+            # Get all upcoming tasks
+            pass
+
+        if not tasks:
+            warnings.append(u'No tasks found')
+            logger.warn(warnings[-1])
+            return
+
+        for task in tasks:
+            if not task:
+                warnings.append(u'Task ({0}) not found.'.format(task_id))
+                logger.warn(warnings[-1])
+                continue
+            if not (task.task_action and task.task_items):
+                warnings.append(
+                    u'Task <a href="{0}">{1}</a> (action: {2}, items: {3}) incomplete.'.format(  # noqa
+                        task.absolute_url(),
+                        task.title,
+                        task.task_action,
+                        task.task_items
+                    )
+                )
+                logger.warn(warnings[-1])
+                continue
+
+            for ref in task.task_items:
+                ob = ref.to_object
+                if not ob:
+                    continue
+                try:
+                    plone.api.content.transition(
+                        obj=ob,
+                        transition=task.task_action
+                    )
+                    infos.append(u'Task <a href="{0}">{1}</a> successfully run for object <a href="{2}">{3}</a>.'.format(  # noqa
+                        task.absolute_url(),
+                        task.title,
+                        ob.absolute_url(),
+                        ob.title
+                    ))
+                    logger.info(infos[-1])
+                except InvalidParameterError:
+                    warnings.append(u'Could not apply task <a href="{0}">{1}</a> with transform {2} for object <a href="{3}">{4}</a>.'.format(  # noqa
+                        task.absolute_url(),
+                        task.title,
+                        task.task_action,
+                        ob.absolute_url(),
+                        ob.title
+                    ))
+                    logger.warn(warnings[-1])
+
+            self.infos = infos
+            self.warnings = warnings
+            return super(WFTaskRunnerView, self).__call__(*args, **kwargs)

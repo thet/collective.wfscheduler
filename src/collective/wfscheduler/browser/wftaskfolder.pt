@@ -70,7 +70,7 @@
                     <a class="delete pat-plone-modal" tal:attributes="href string:${item_link}/@@delete_confirmation">
                       Delete
                     </a>
-                    <a class="run pat-plone-modal" tal:attributes="href string:${context/absolute_url}/@@wftaskrunner/run?task_id=${item/UID}">
+                    <a class="run pat-plone-modal" tal:attributes="href string:${context/absolute_url}/@@wftaskrunner/?task_id=${item/UID}">
                       Run
                     </a>
                   </td>
